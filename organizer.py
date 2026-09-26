@@ -1,7 +1,11 @@
+import shutil
 import os
 folder = input("Enter folder path: ")
 list_files = os.listdir(folder)
 for file in list_files:
+    file_path = os.path.join(folder,file)
+    if not os.path.isfile(file_path):
+        continue
     extension = os.path.splitext(file)[1].lower()
     if extension in [".jpg", ".png", ".gif"]:
         category = 'Images'
@@ -19,4 +23,6 @@ for file in list_files:
         category = "Unknown"
     category_path = os.path.join(folder, category)
     os.makedirs(category_path, exist_ok=True)
+    destination = os.path.join(category_path, file)
+    shutil.move(file_path, destination)
     print(f'{file} >> {category}')
