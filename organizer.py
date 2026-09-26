@@ -17,4 +17,6 @@ for file in list_files:
         category = "Music"
     else:
         category = "Unknown"
+    category_path = os.path.join(folder, category)
+    os.makedirs(category_path, exist_ok=True)
     print(f'{file} >> {category}')
